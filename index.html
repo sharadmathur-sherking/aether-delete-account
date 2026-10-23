@@ -3,88 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Aether Account</title>
+    <title>Aether Account & Data Deletion</title>
     <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --danger: #DC2626;
+            --danger-hover: #B91C1C;
+            --text-main: #1F2937;
+            --text-muted: #4B5563;
+            --bg-card: #F9FAFB;
+            --border: #E5E7EB;
+        }
+        * { box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            max-width: 820px;
             margin: auto;
-            padding: 40px;
+            padding: 36px 20px;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-main);
         }
         h1 {
-            color: #4F46E5;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 28px;
         }
-        .box {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #111827;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge {
+            font-size: 12px;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .badge-recommended {
+            background: #EEF2FF;
+            color: var(--primary);
+            border: 1px solid #C7D2FE;
+        }
+        .badge-danger {
+            background: #FEF2F2;
+            color: var(--danger);
+            border: 1px solid #FECACA;
+        }
+        .steps {
+            padding-left: 20px;
+            margin: 12px 0;
+        }
+        .steps li {
+            margin-bottom: 8px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s ease-in-out;
+        }
+        .btn-danger {
+            background: var(--danger);
+            color: #FFFFFF;
+        }
+        .btn-danger:hover {
+            background: var(--danger-hover);
+        }
+        .btn-outline {
+            background: #FFFFFF;
+            border: 1px solid #D1D5DB;
+            color: #374151;
+        }
+        .btn-outline:hover {
+            background: #F3F4F6;
+        }
+        .script-box {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 14px;
+            margin-top: 14px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 13px;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #10B981;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
     </style>
 </head>
 <body>
 
-<h1>Aether Account & Data Deletion Request</h1>
-
-<p>
-Users of Aether may request deletion of their account and associated data.
+<h1>Aether Account & Data Deletion</h1>
+<p class="subtitle">
+    Permanent deletion request portal for Aether users.
 </p>
 
-<div class="box">
-    <h2>How to Request Deletion</h2>
-
+<!-- OPTION 1: IN-APP -->
+<div class="card">
+    <h2>
+        Option 1: In-App Deletion
+        <span class="badge badge-recommended">Instant & Recommended</span>
+    </h2>
     <p>
-        Send an email to:
+        If you have the Aether app installed on your phone or desktop, you can permanently delete your account and all associated cloud data immediately without waiting:
+    </p>
+    <ol class="steps">
+        <li>Open the <strong>Aether</strong> app.</li>
+        <li>Tap on <strong>Settings</strong> from the main menu.</li>
+        <li>Scroll down to the <strong>Account</strong> section.</li>
+        <li>Tap <strong>Delete Account & Data</strong>.</li>
+        <li>Complete identity re-verification (Google Sign-In or Password).</li>
+        <li>Confirm deletion — all your notes, attendance records, study logs, and tasks will be erased instantly.</li>
+    </ol>
+</div>
+
+<!-- OPTION 2: EMAIL SCRIPT -->
+<div class="card">
+    <h2>
+        Option 2: Automated Email Request
+        <span class="badge badge-danger">If App Is Uninstalled</span>
+    </h2>
+    <p>
+        If you have already uninstalled the app, click below. A pre-scripted deletion request email will automatically open with the subject and body filled out. Just click <strong>Send</strong> from the email address registered with your Aether account.
     </p>
 
-    <p>
-        <strong>atharvamathur2905@gmail.com</strong>
-    </p>
+    <div class="btn-group">
+        <a id="mailBtn" href="#" class="btn btn-danger">
+            ✉️ Open in Email App
+        </a>
+        <a id="gmailBtn" href="#" target="_blank" class="btn btn-outline">
+            🌐 Open in Gmail Web
+        </a>
+        <button id="copyBtn" class="btn btn-outline" type="button">
+            📋 Copy Email Script
+        </button>
+    </div>
 
-    <p>
-        Subject:
-        <strong>Delete My Aether Account</strong>
-    </p>
+    <div class="script-box" id="previewText">To: atharvamathur2905@gmail.com
+Subject: [AETHER ACCOUNT DELETION REQUEST] - Delete My Account
 
-    <p>
-        Please include the email address associated with your Aether account.
-    </p>
+Body:
+To Aether Support Team,
+
+I request the permanent deletion of my Aether account and all associated personal cloud data.
+
+Account Details:
+- Registered Email: (Sending from this email address)
+- Platform: Aether App
+
+I understand this action is irreversible and will permanently delete my study notes, tasks, attendance records, and login profile.
+
+Thank you.</div>
 </div>
 
 <h2>What Data Will Be Deleted</h2>
-
 <ul>
-    <li>Account information</li>
-    <li>Notes</li>
-    <li>Tasks and To-Do data</li>
-    <li>Attendance records</li>
-    <li>Study statistics and productivity data</li>
+    <li>Account credentials and profile information</li>
+    <li>All personal Notes, folders, and attachments</li>
+    <li>Tasks and To-Do history</li>
+    <li>Subject Attendance & CGPA records</li>
+    <li>Study Timer sessions, milestones, and productivity statistics</li>
+    <li>AI Doubts history and Flashcard decks</li>
 </ul>
 
-<h2>Data Retention</h2>
-
+<h2>Data Retention Policy</h2>
 <p>
-Deletion requests are typically processed within 30 days.
-Some information may be retained if required by law or for security and fraud-prevention purposes.
+    In-app deletion takes effect <strong>immediately</strong>. Automated email requests are processed automatically by our deletion service within 24 hours. Some minimal security logs may be retained only if required by applicable law.
 </p>
 
-<h2>Contact</h2>
-
+<h2>Support Contact</h2>
 <p>
-For questions regarding account deletion, contact:
+    For technical inquiries or manual data deletion assistance, contact:<br>
+    <strong>Email:</strong> atharvamathur2905@gmail.com
 </p>
 
-<p>
-<strong>atharvamathur2905@gmail.com</strong>
+<hr style="border: 0; border-top: 1px solid #E5E7EB; margin: 32px 0 20px;">
+
+<p style="font-size: 13px; color: var(--text-muted); text-align: center;">
+    © 2026 Aether – Ultimate Study Buddy. All Rights Reserved.
 </p>
 
-<hr>
+<div class="toast" id="toast">Script copied to clipboard!</div>
 
-<p>
-© 2026 Aether - Ultimate Study Buddy
-</p>
+<script>
+    const recipient = "atharvamathur2905@gmail.com";
+    const subject = "[AETHER ACCOUNT DELETION REQUEST] - Delete My Account";
+    const body = `To Aether Support Team,
+
+I request the permanent deletion of my Aether account and all associated personal cloud data.
+
+Account Details:
+- Registered Email: (Sending from this email address)
+- Platform: Aether App
+
+I understand this action is irreversible and will permanently delete my study notes, tasks, attendance records, and login profile.
+
+Thank you.`;
+
+    // 1. Set mailto URL
+    document.getElementById("mailBtn").href = 
+        `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // 2. Set Gmail Web URL
+    document.getElementById("gmailBtn").href = 
+        `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // 3. Copy Script
+    document.getElementById("copyBtn").addEventListener("click", () => {
+        const full = `To: ${recipient}\nSubject: ${subject}\n\n${body}`;
+        navigator.clipboard.writeText(full).then(() => {
+            const toast = document.getElementById("toast");
+            toast.style.display = "block";
+            setTimeout(() => { toast.style.display = "none"; }, 2500);
+        });
+    });
+</script>
 
 </body>
 </html>
